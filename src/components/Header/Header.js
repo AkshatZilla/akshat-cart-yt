@@ -1,13 +1,19 @@
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import { Link } from 'react-router-dom';
+import { useStateValue } from '../../StateProvider';
 import './Header.css';
 
 const Header = () => {
+	const [{ user }, dispatch] = useStateValue();
+
+	const login = () => {};
+
 	return (
 		<nav className='header'>
-			<a href='/'>
+			<Link to='/'>
 				<img src='/Icon.png' alt='Logo' className='header__logo' />
-			</a>
+			</Link>
 
 			<div className='header__search'>
 				<input type='text' className='header__searchInput' />
@@ -15,26 +21,28 @@ const Header = () => {
 			</div>
 
 			<div className='header__nav'>
-				<abbr className='header__link'>
-					<div className='header__option'>
-						<span className='header__optionLineOne'>Hello Akshat</span>
-						<span className='header__optionLineTwo'>Sign Out</span>
+				<Link to={!user && '/login'} className='header__link'>
+					<div onClick={login} className='header__option'>
+						<span className='header__optionLineOne'>Hello {user?.email}</span>
+						<span className='header__optionLineTwo'>
+							{user ? 'Sign Out' : 'Sign In'}
+						</span>
 					</div>
-				</abbr>
+				</Link>
 
-				<a href='/' className='header__link'>
+				<Link to='/' className='header__link'>
 					<div className='header__option'>
 						<span className='header__optionLineOne'>Returns</span>
 						<span className='header__optionLineTwo'>& Orders</span>
 					</div>
-				</a>
+				</Link>
 
-				<a href='/checkout' className='header__link'>
+				<Link to='/checkout' className='header__link'>
 					<div className='header__optionBasket'>
 						<ShoppingCartOutlinedIcon />
 						<span className='header__optionLineTwo header__basketCount'>3</span>
 					</div>
-				</a>
+				</Link>
 			</div>
 		</nav>
 	);
