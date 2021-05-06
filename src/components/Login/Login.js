@@ -3,6 +3,7 @@ import { useStateValue } from '../../StateProvider';
 import { auth, provider } from '../../firebase';
 import { actionTypes } from '../../reducer';
 import './Login.css';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
 	const [{}, dispatch] = useStateValue();
@@ -22,7 +23,9 @@ const Login = () => {
 	return (
 		<div className='login'>
 			<div className='login__container'>
-				<img src='/Icon.png' alt='' />
+				<Link to='/'>
+					<img src='/Icon.png' alt='' />
+				</Link>
 
 				<div className='login__text'>
 					<h2>Login to AkshatCart</h2>

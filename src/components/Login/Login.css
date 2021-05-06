@@ -14,7 +14,7 @@
 	width: 300px;
 }
 
-.login__container > img {
+.login__container > a > img {
 	object-fit: contain;
 	height: 100px;
 	margin-bottom: 40px;
